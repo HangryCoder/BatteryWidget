@@ -30,8 +30,8 @@ internal fun updateAppWidget(
     val widgetText = context.getString(R.string.appwidget_text)
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.battery_widget)
-   // views.setTextViewText(R.id.battery_value, widgetText)
-   // views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
+    // views.setTextViewText(R.id.battery_value, widgetText)
+    views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
