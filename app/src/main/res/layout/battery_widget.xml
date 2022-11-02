@@ -1,3 +1,4 @@
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.BatteryWidget.AppWidget.Container"
     android:theme="@style/Theme.BatteryWidget.AppWidgetContainer"
@@ -16,4 +17,30 @@
         android:textStyle="bold|italic"
         android:layout_margin="8dp"
         android:contentDescription="@string/appwidget_text" />
+</RelativeLayout>-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.BatteryWidget.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.BatteryWidget.AppWidgetContainer">
+
+    <ImageView
+        android:id="@+id/battery_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        app:srcCompat="@drawable/ic_phone" />
+
+    <TextView
+        android:id="@+id/battery_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="4dp"
+        android:text="45%"
+        android:textSize="20sp" />
+
 </RelativeLayout>
