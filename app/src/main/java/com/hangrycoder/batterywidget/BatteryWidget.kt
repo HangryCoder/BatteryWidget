@@ -3,7 +3,10 @@ package com.hangrycoder.batterywidget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Context.BATTERY_SERVICE
+import android.os.BatteryManager
 import android.widget.RemoteViews
+
 
 class BatteryWidget : AppWidgetProvider() {
     override fun onUpdate(
@@ -27,10 +30,13 @@ class BatteryWidget : AppWidgetProvider() {
 internal fun updateAppWidget(
     context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
-    // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.battery_widget)
-    // views.setTextViewText(R.id.battery_value, widgetText)
+
+    val batteryManager = context.getSystemService(BATTERY_SERVICE) as BatteryManager
+    val batteryRemaining = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+
+    views.setTextViewText(R.id.battery_value, "$batteryRemaining%")
+
     views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
 
     // Instruct the widget manager to update the widget
