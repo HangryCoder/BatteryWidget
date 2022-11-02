@@ -26,11 +26,11 @@
     android:background="@drawable/app_widget_background"
     android:theme="@style/Theme.BatteryWidget.AppWidgetContainer">
 
-    <LinearLayout
+    <ImageView
         android:id="@+id/battery_percentage"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_widget_inner_view_background"
+        android:src="@drawable/app_widget_inner_view_background"
         android:orientation="horizontal" />
 
     <ImageView

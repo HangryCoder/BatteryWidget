@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Context.BATTERY_SERVICE
 import android.os.BatteryManager
+import android.widget.LinearLayout
 import android.widget.RemoteViews
 
 
@@ -38,6 +39,11 @@ internal fun updateAppWidget(
     views.setTextViewText(R.id.battery_value, "$batteryRemaining%")
 
     views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
+
+    //views.setInt(R.id.battery_percentage, "setMarginStart", 0)
+    //views.setInt(R.id.battery_percentage, "setWidth", 50)
+    views.setViewPadding(R.id.battery_percentage, 0, 0, 100 - batteryRemaining, 0)
+    //  val layout = views.//views.findViewById(R.id.testing) as LinearLayout
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
