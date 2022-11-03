@@ -354,18 +354,56 @@
         android:id="@+id/percentage_95"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.95"
-            android:background="@drawable/app_widget_inner_view_background_incomplete" />
+            android:background="@drawable/app_widget_inner_view_background" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.05" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/percentage_97"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.97"
+            android:background="@drawable/app_widget_inner_view_background" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/percentage_99"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.99"
+            android:background="@drawable/app_widget_inner_view_background" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01" />
 
     </LinearLayout>
 
