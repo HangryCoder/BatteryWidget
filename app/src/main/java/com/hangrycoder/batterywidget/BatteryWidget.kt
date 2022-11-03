@@ -37,13 +37,10 @@ internal fun updateAppWidget(
     val batteryRemaining = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
 
     views.setTextViewText(R.id.battery_value, "$batteryRemaining%")
-
     views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
-
-    //views.setInt(R.id.battery_percentage, "setMarginStart", 0)
-    //views.setInt(R.id.battery_percentage, "setWidth", 50)
-    views.setViewPadding(R.id.battery_percentage, 0, 0, 100 - batteryRemaining, 0)
-    //  val layout = views.//views.findViewById(R.id.testing) as LinearLayout
+    /*views.setViewPadding(
+        R.id.battery_percentage, 0, 0, 500, 0
+    )*/
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
