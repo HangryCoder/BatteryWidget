@@ -5,8 +5,10 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Context.BATTERY_SERVICE
 import android.os.BatteryManager
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.RemoteViews
+import androidx.annotation.IdRes
 
 
 class BatteryWidget : AppWidgetProvider() {
@@ -39,34 +41,37 @@ internal fun updateAppWidget(
     views.setTextViewText(R.id.battery_value, "$batteryRemaining%")
     views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
 
-    var batteryPercentageId = R.id.percentage_05
-
-    when (batteryRemaining) {
-        in 1..5 -> R.id.percentage_05
-        in 6..10 -> R.id.percentage_10
-        in 11..15 -> R.id.percentage_15
-        in 16..20 -> R.id.percentage_20
-        in 21..25 -> R.id.percentage_25
-        in 26..30 -> R.id.percentage_30
-        in 31..35 -> R.id.percentage_35
-        in 36..40 -> R.id.percentage_40
-        in 41..45 -> R.id.percentage_45
-        in 46..50 -> R.id.percentage_50
-        in 51..55 -> R.id.percentage_55
-        in 56..60 -> R.id.percentage_60
-        in 61..65 -> R.id.percentage_65
-        in 66..70 -> R.id.percentage_70
-        in 71..75 -> R.id.percentage_75
-        in 76..80 -> R.id.percentage_80
-        in 81..85 -> R.id.percentage_85
-        in 86..90 -> R.id.percentage_90
-        in 91..95 -> R.id.percentage_95
-        in 96..97 -> R.id.percentage_97
-        in 98..99 -> R.id.percentage_99
-        in 96..100 -> R.id.percentage_100
+    batteryRemaining.apply {
+        views.setVisibility(R.id.percentage_05, this in 1..5)
+        views.setVisibility(R.id.percentage_10, this in 6..10)
+        views.setVisibility(R.id.percentage_15, this in 11..15)
+        views.setVisibility(R.id.percentage_20, this in 16..20)
+        views.setVisibility(R.id.percentage_25, this in 21..25)
+        views.setVisibility(R.id.percentage_30, this in 26..30)
+        views.setVisibility(R.id.percentage_35, this in 31..35)
+        views.setVisibility(R.id.percentage_40, this in 36..40)
+        views.setVisibility(R.id.percentage_45, this in 41..45)
+        views.setVisibility(R.id.percentage_50, this in 46..50)
+        views.setVisibility(R.id.percentage_55, this in 51..55)
+        views.setVisibility(R.id.percentage_60, this in 56..60)
+        views.setVisibility(R.id.percentage_65, this in 61..65)
+        views.setVisibility(R.id.percentage_70, this in 66..70)
+        views.setVisibility(R.id.percentage_75, this in 71..75)
+        views.setVisibility(R.id.percentage_80, this in 76..80)
+        views.setVisibility(R.id.percentage_85, this in 81..85)
+        views.setVisibility(R.id.percentage_90, this in 86..90)
+        views.setVisibility(R.id.percentage_95, this in 91..95)
+        views.setVisibility(R.id.percentage_97, this in 96..97)
+        views.setVisibility(R.id.percentage_99, this in 98..99)
+        views.setVisibility(R.id.percentage_100, this == 100)
     }
 
-
-    // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
+}
+
+fun RemoteViews.setVisibility(@IdRes viewId: Int, show: Boolean) {
+    this.setViewVisibility(
+        viewId, if (show) View.VISIBLE else View.INVISIBLE
+    )
+
 }
