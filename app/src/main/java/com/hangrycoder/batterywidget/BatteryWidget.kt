@@ -2,16 +2,22 @@ package com.hangrycoder.batterywidget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Context.BATTERY_SERVICE
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.BatteryManager
+import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.RemoteViews
 import androidx.annotation.IdRes
 
 
 class BatteryWidget : AppWidgetProvider() {
+
+   // private val batteryStatusReceiver = BatteryStatusReceiver()
+
     override fun onUpdate(
         context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray
     ) {
@@ -23,10 +29,12 @@ class BatteryWidget : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
+       // context.registerReceiver(batteryStatusReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
     }
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+        //context.unregisterReceiver(batteryStatusReceiver)
     }
 }
 
@@ -40,6 +48,11 @@ internal fun updateAppWidget(
 
     views.setTextViewText(R.id.battery_value, "$batteryRemaining%")
     views.setImageViewResource(R.id.battery_icon, R.drawable.ic_phone)
+
+    /* val intent = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+     val level = intent?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) ?: 0
+     val scale = intent?.getIntExtra(BatteryManager.EXTRA_SCALE, 100) ?: 0
+     val percent = level * 100 / scale*/
 
     batteryRemaining.apply {
         views.setVisibility(R.id.percentage_05, this in 1..5)
@@ -73,5 +86,15 @@ fun RemoteViews.setVisibility(@IdRes viewId: Int, show: Boolean) {
     this.setViewVisibility(
         viewId, if (show) View.VISIBLE else View.INVISIBLE
     )
-
 }
+
+//class BatteryStatusReceiver : BroadcastReceiver() {
+//    override fun onReceive(context: Context?, intent: Intent?) {
+//
+//        val level = intent?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) ?: 0
+//        val scale = intent?.getIntExtra(BatteryManager.EXTRA_SCALE, 100) ?: 0
+//        val percent = level * 100 / scale
+//
+//        Log.d("TAG", "percent $percent")
+//    }
+//}
